@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
     private String locationDisplay(Location location) {
-        return "(lat: " + location.getLatitude() + ", long: " + location.getLongitude() + ")";
+        return "(lat: " + location.getLatitude() + ", long: " + location.getLongitude() +
+                ", alt: " + location.getAltitude() + ")";
     }
 
 }
