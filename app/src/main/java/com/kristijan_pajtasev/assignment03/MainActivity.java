@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private Button startStopButton;
     private TextView currentLocation;
     private ArrayList<LocationPoint> points;
+    private Context context;
 
     private OnClickListener startStopButtonHandler = new OnClickListener() {
         @Override
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 startStopButton.setText(R.string.stop);
             } else {
                 startStopButton.setText(R.string.start);
+                GPXHandlerUtil.createFile(points, "myfile.xml", context);
             }
 
         }
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
         startStopButton = findViewById(R.id.startStopButton);
         currentLocation = findViewById(R.id.currentLocation);
         startStopButton.setOnClickListener(startStopButtonHandler);
@@ -100,5 +104,4 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         return "(lat: " + location.getLatitude() + ", long: " + location.getLongitude() +
                 ", alt: " + location.getAltitude() + ")";
     }
-
 }
