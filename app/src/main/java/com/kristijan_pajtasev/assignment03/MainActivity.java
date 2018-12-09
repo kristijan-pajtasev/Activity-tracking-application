@@ -15,16 +15,20 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
     private boolean isStarted = false;
     private Button startStopButton;
     private TextView currentLocation;
+    private ArrayList<LocationPoint> points;
 
     private OnClickListener startStopButtonHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
             isStarted = !isStarted;
             if (isStarted) {
+                points = new ArrayList<>();
                 startActivity();
                 startStopButton.setText(R.string.stop);
             } else {
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onLocationChanged(Location location) {
         Log.i("MAIN_ACTIVITY", "onLocationChanged: " + locationDisplay(location));
+        points.add(new LocationPoint(
+                location.getAltitude(),
+                location.getLatitude(),
+                location.getLongitude(),
+                System.currentTimeMillis()));
         currentLocation.setText(locationDisplay(location));
     }
 
