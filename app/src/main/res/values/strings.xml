@@ -2,4 +2,5 @@
     <string name="app_name">Assignment03</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="current_location">Current Location</string>
 </resources>
