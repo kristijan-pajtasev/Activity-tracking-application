@@ -11,7 +11,7 @@ public class GPXHandlerUtil {
         String filename = "myfile.xml";
         String fileContents = "Hello world!";
         FileOutputStream outputStream;
-
+// TODO create xml
         try {
             outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
             outputStream.write(fileContents.getBytes());
@@ -22,7 +22,8 @@ public class GPXHandlerUtil {
 
     }
 
-    static public void readFile() {
-
+    static public ArrayList<LocationPoint> readFile(String fileName) {
+        // TODO read xml
+        return new ArrayList<>();
     }
 }
