@@ -10,4 +10,20 @@ public class LocationPoint {
         this.longitude = longitude;
         this.time = time;
     }
+
+    public double getAltitude() {
+        return altitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public long getTime() {
+        return time;
+    }
 }

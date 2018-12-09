@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 startStopButton.setText(R.string.stop);
             } else {
                 startStopButton.setText(R.string.start);
-                GPXHandlerUtil.createFile(points, "myfile.xml", context);
+                GPXHandlerUtil.createFile(points, "myfile.gpx", context);
             }
 
         }
