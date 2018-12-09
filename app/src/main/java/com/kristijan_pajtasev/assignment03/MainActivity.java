@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         public void onClick(View v) {
             isStarted = !isStarted;
             if (isStarted) {
+                startActivity();
                 startStopButton.setText(R.string.stop);
             } else {
                 startStopButton.setText(R.string.start);
@@ -39,9 +40,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
         startStopButton = findViewById(R.id.startStopButton);
         currentLocation = findViewById(R.id.currentLocation);
-
         startStopButton.setOnClickListener(startStopButtonHandler);
+    }
 
+    private void startActivity() {
+        Log.w("MAIN_ACTIVITY", "Activity started");
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
             }
-                // TODO: Consider calling
+            // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -61,13 +64,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             Log.w("MAIN_ACTIVITY", "GPS permissions granted");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
         }
-
-
     }
 
     @Override
     public void onLocationChanged(Location location) {
-       Log.i("MAIN_ACTIVITY", "onLocationChanged: " + locationDisplay(location));
+        Log.i("MAIN_ACTIVITY", "onLocationChanged: " + locationDisplay(location));
         currentLocation.setText(locationDisplay(location));
     }
 
