@@ -84,7 +84,7 @@ public class MainActivity extends Activity implements LocationListener {
                 location.getAltitude(),
                 location.getLatitude(),
                 location.getLongitude(),
-                System.currentTimeMillis()));
+                location.getTime()));
         currentLocation.setText(locationDisplay(location));
     }
 
