@@ -9,5 +9,7 @@ public class StatisticsActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics);
+
+        GPXHandlerUtil.decodeGPX(this, "myfile.gpx");
     }
 }
