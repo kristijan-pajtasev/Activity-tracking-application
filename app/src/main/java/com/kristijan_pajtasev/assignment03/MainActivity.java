@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements LocationListener {
+    public static final String ACTIVITY_TAG = "MAIN_ACTIVITY";
     private boolean isStarted = false;
     private Button startStopButton;
     private TextView currentLocation;
@@ -70,16 +71,16 @@ public class MainActivity extends Activity implements LocationListener {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            Log.w("MAIN_ACTIVITY", "GPS permissions missing");
+            Log.w(ACTIVITY_TAG, "GPS permissions missing");
         } else {
-            Log.w("MAIN_ACTIVITY", "GPS permissions granted");
+            Log.w(ACTIVITY_TAG, "GPS permissions granted");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
         }
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.i("MAIN_ACTIVITY", "onLocationChanged: " + locationDisplay(location));
+        Log.i(ACTIVITY_TAG, "onLocationChanged: " + locationDisplay(location));
         points.add(new LocationPoint(
                 location.getAltitude(),
                 location.getLatitude(),
