@@ -3,4 +3,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="current_location">Current Location</string>
+    <string name="max">Max</string>
+    <string name="min">Min</string>
 </resources>

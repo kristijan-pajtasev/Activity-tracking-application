@@ -3,6 +3,7 @@ package com.kristijan_pajtasev.assignment03;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,5 +17,8 @@ public class StatisticsActivity extends Activity {
 
         double maxAltitude = LocationPointUtil.maxAltitude(locationPoints);
         double minAltitude = LocationPointUtil.minAltitude(locationPoints);
+
+        ((TextView)findViewById(R.id.minAltitude)).setText(minAltitude + "");
+        ((TextView)findViewById(R.id.maxAltitude)).setText(maxAltitude + "");
     }
 }
