@@ -146,4 +146,10 @@
             android:text="@string/total_distance"/>
     </LinearLayout>
 
+    <com.kristijan_pajtasev.assignment03.Chart
+        android:id="@+id/chart"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
+
 </LinearLayout>
