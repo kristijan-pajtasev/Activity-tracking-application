@@ -75,10 +75,10 @@ public class GPXHandlerUtil {
         }
     }
 
-    public static List<LocationPoint> decodeGPX(Context context, String fileName){
+    public static ArrayList<LocationPoint> decodeGPX(Context context, String fileName){
         File file = new File(context.getFilesDir(), fileName);
 
-        List<LocationPoint> list = new ArrayList<LocationPoint>();
+        ArrayList<LocationPoint> list = new ArrayList<LocationPoint>();
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         try {

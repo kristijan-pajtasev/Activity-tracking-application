@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class StatisticsActivity extends Activity {
     @Override
@@ -12,7 +12,9 @@ public class StatisticsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics);
 
-        List<LocationPoint> locationPoints = GPXHandlerUtil.decodeGPX(this, "myfile.gpx");
+        ArrayList<LocationPoint> locationPoints = GPXHandlerUtil.decodeGPX(this, "myfile.gpx");
 
+        double maxAltitude = LocationPointUtil.maxAltitude(locationPoints);
+        double minAltitude = LocationPointUtil.minAltitude(locationPoints);
     }
 }
