@@ -7,4 +7,6 @@
     <string name="min">Min</string>
     <string name="gain">Gain</string>
     <string name="loss">Loss</string>
+    <string name="max_speed">Max Speed</string>
+    <string name="min_speed">Min Speed</string>
 </resources>
