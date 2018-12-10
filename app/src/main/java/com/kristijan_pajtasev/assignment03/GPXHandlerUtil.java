@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +57,11 @@ public class GPXHandlerUtil {
                         .append(point.getLatitude())
                         .append("\" lon=\"")
                         .append(point.getLongitude())
-                        .append("\"><time>")
+                        .append("\">")
+                        .append("<ele>")
+                        .append(point.getAltitude())
+                        .append("</ele>")
+                        .append("<time>")
                         .append(df.format(new Date(point.getTime())))
                         .append("</time></trkpt>\n");
             }
@@ -95,7 +100,12 @@ public class GPXHandlerUtil {
                 String newLongitude = attributes.getNamedItem("lon").getTextContent();
                 Double newLongitude_double = Double.parseDouble(newLongitude);
 
-                list.add(new LocationPoint(newLatitude_double, newLongitude_double, 0, 0));
+                Double alt = Double.parseDouble(node.getChildNodes().item(0).getTextContent());
+                String time = node.getChildNodes().item(1).getTextContent();
+                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                Date date = formatter.parse(time);
+
+                list.add(new LocationPoint(alt, newLatitude_double, newLongitude_double, date.getTime()));
 
             }
             fileInputStream.close();
@@ -106,6 +116,8 @@ public class GPXHandlerUtil {
         } catch (SAXException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 

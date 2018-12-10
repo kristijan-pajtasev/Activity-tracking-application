@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import java.util.List;
+
 public class StatisticsActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics);
 
-        GPXHandlerUtil.decodeGPX(this, "myfile.gpx");
+        List<LocationPoint> locationPoints = GPXHandlerUtil.decodeGPX(this, "myfile.gpx");
+
     }
 }
