@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements LocationListener {
     }
 
     private void startActivity() {
-        Log.w("MAIN_ACTIVITY", "Activity started");
+        Log.w(ACTIVITY_TAG, "Activity started");
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
