@@ -9,4 +9,5 @@
     <string name="loss">Loss</string>
     <string name="max_speed">Max Speed</string>
     <string name="min_speed">Min Speed</string>
+    <string name="avg_speed">Avg Speed</string>
 </resources>

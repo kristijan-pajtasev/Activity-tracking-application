@@ -21,6 +21,7 @@ public class StatisticsActivity extends Activity {
         double altitudeLoss = LocationPointUtil.altitudeLoss(locationPoints);
         double maxSpeed = LocationPointUtil.maxSpeed(locationPoints);
         double minSpeed = LocationPointUtil.minSpeed(locationPoints);
+        double avgSpeed = LocationPointUtil.avgSpeed(locationPoints);
 
         ((TextView)findViewById(R.id.minAltitude)).setText(minAltitude + "");
         ((TextView)findViewById(R.id.maxAltitude)).setText(maxAltitude + "");
@@ -28,5 +29,6 @@ public class StatisticsActivity extends Activity {
         ((TextView)findViewById(R.id.altitudeLoss)).setText(altitudeLoss + "");
         ((TextView)findViewById(R.id.maxSpeed)).setText(maxSpeed + "");
         ((TextView)findViewById(R.id.minSpeed)).setText(minSpeed + "");
+        ((TextView)findViewById(R.id.avgSpeed)).setText(avgSpeed + "");
     }
 }

@@ -46,6 +46,7 @@ public class LocationPointUtil {
     }
 
     public static double maxSpeed(ArrayList<LocationPoint> locationPoints) {
+        if(locationPoints.size() < 2) return 0;
         double maxSpeed = 0;
         for(int i = 0; i < locationPoints.size() - 1; i++) {
             LocationPoint current = locationPoints.get(i);
@@ -59,6 +60,7 @@ public class LocationPointUtil {
     }
 
     public static double minSpeed(ArrayList<LocationPoint> locationPoints) {
+        if(locationPoints.size() < 2) return 0;
         double minSpeed = 0;
         for(int i = 0; i < locationPoints.size() - 1; i++) {
             LocationPoint current = locationPoints.get(i);
@@ -68,6 +70,18 @@ public class LocationPointUtil {
             if(speed < minSpeed || i == 0) minSpeed = speed;
         }
         return minSpeed;
+    }
+
+    public static double avgSpeed(ArrayList<LocationPoint> locationPoints) {
+        if(locationPoints.size() < 2) return 0;
+        double distance = 0;
+        for(int i = 0; i < locationPoints.size() - 1; i++) {
+            LocationPoint current = locationPoints.get(i);
+            LocationPoint next = locationPoints.get(i + 1);
+
+            distance += distanceBetweenPoints(current, next);
+        }
+        return distance / ((locationPoints.size() - 1) * 5);
     }
 
     private static double distanceBetweenPoints(LocationPoint point1, LocationPoint point2) {
