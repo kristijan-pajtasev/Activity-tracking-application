@@ -24,4 +24,24 @@ public class LocationPointUtil {
         }
         return maxAltitude;
     }
+
+    public static double altitudeGain(ArrayList<LocationPoint> locationPoints) {
+        double gain = 0;
+        for(int i = 0; i < locationPoints.size() - 1; i++) {
+            double diff = locationPoints.get(i + 1).getAltitude() -
+                    locationPoints.get(i).getAltitude();
+            if(diff > 0) gain += diff;
+        }
+        return gain;
+    }
+
+    public static double altitudeLoss(ArrayList<LocationPoint> locationPoints) {
+        double loss = 0;
+        for(int i = 0; i < locationPoints.size() - 1; i++) {
+            double diff = locationPoints.get(i + 1).getAltitude() -
+                    locationPoints.get(i).getAltitude();
+            if(diff < 0) loss -= diff;
+        }
+        return loss;
+    }
 }
