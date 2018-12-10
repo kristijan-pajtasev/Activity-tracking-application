@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StatisticsActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.kristijan_pajtasev.assignment03.MainActivity" />
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

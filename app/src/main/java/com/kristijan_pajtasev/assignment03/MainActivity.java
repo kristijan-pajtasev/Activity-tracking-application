@@ -3,6 +3,7 @@ package com.kristijan_pajtasev.assignment03;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -35,6 +36,9 @@ public class MainActivity extends Activity implements LocationListener {
             } else {
                 startStopButton.setText(R.string.start);
                 GPXHandlerUtil.createFile(points, "myfile.gpx", context);
+                Intent intent = new Intent(context, StatisticsActivity.class);
+                startActivity(intent);
+
             }
 
         }
