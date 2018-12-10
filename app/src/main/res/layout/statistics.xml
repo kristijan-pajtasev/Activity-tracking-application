@@ -129,4 +129,21 @@
             android:text="@string/avg_speed"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/total_distance"/>
+        <TextView
+            android:id="@+id/totalDistance"
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/total_distance"/>
+    </LinearLayout>
+
 </LinearLayout>

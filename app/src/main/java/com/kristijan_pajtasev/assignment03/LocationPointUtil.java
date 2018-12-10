@@ -84,6 +84,18 @@ public class LocationPointUtil {
         return distance / ((locationPoints.size() - 1) * 5);
     }
 
+    public static double totalDistance(ArrayList<LocationPoint> locationPoints) {
+        if(locationPoints.size() < 2) return 0;
+        double distance = 0;
+        for(int i = 0; i < locationPoints.size() - 1; i++) {
+            LocationPoint current = locationPoints.get(i);
+            LocationPoint next = locationPoints.get(i + 1);
+
+            distance += distanceBetweenPoints(current, next);
+        }
+        return distance;
+    }
+
     private static double distanceBetweenPoints(LocationPoint point1, LocationPoint point2) {
         double x1 = point1.getAltitude() * Math.cos(point1.getLatitude()) * Math.sin(point1.getLongitude());
         double y1 = point1.getAltitude() * Math.sin(point1.getLatitude());
