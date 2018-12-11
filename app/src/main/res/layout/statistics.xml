@@ -148,7 +148,7 @@
 
     <com.kristijan_pajtasev.assignment03.Chart
         android:id="@+id/chart"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_width="match_parent"
         />
 

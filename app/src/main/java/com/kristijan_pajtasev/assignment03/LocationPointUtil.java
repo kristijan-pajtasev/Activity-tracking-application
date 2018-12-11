@@ -111,4 +111,18 @@ public class LocationPointUtil {
                         Math.pow(z2 - z1, 2)
         );
     }
+
+    public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints, float scalarX, float scalarY) {
+        float[] points = new float[locationPoints.size() * 2];
+        for(int i = 0; i < locationPoints.size(); i++) {
+            LocationPoint point = locationPoints.get(i);
+            points[2 * i ] = i * scalarX;
+            points[2 * i + 1] = (float)point.getAltitude() * scalarY;
+        }
+        return points;
+    }
+
+    public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints) {
+        return toChartPoints(locationPoints, 1, 1);
+    }
 }
