@@ -39,7 +39,7 @@ public class Chart extends View {
     }
 
     public void setPoints(ArrayList<LocationPoint> points) {
-        this.points = LocationPointUtil.toChartPoints(points, windowWidth / points.size(), 1);
+        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), 1);
         invalidate();
     }
 
