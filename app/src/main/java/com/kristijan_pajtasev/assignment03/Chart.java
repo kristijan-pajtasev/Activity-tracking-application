@@ -38,8 +38,9 @@ public class Chart extends View {
         this.setBackgroundColor(Color.BLACK);
     }
 
-    public void setPoints(ArrayList<LocationPoint> points) {
-        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), 1);
+    public void setPoints(ArrayList<LocationPoint> points, double maxAltitude, double minAltitude) {
+        float scalarY = (float)(400 / (maxAltitude - minAltitude));
+        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), scalarY, (float)minAltitude);
         invalidate();
     }
 

@@ -112,7 +112,7 @@ public class LocationPointUtil {
         );
     }
 
-    public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints, float scalarX, float scalarY) {
+    public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints, float scalarX, float scalarY, float yCorrection) {
         float[] points = new float[locationPoints.size() * 2];
         ArrayList<Float> pointsList = new ArrayList<>();
         for(int i = 0; i < locationPoints.size(); i++) {
@@ -121,10 +121,10 @@ public class LocationPointUtil {
 //            points[2 * i + 1] = (float)point.getAltitude() * scalarY;
 
             pointsList.add(i * scalarX);
-            pointsList.add((float)point.getAltitude() * scalarY);
+            pointsList.add((float)(point.getAltitude()- yCorrection) * scalarY);
             if(i>0 && i < locationPoints.size() - 1) {
                 pointsList.add(i * scalarX);
-                pointsList.add((float)point.getAltitude() * scalarY);
+                pointsList.add((float)(point.getAltitude()- yCorrection) * scalarY);
             }
         }
         points = new float[pointsList.size()];
@@ -135,6 +135,6 @@ public class LocationPointUtil {
     }
 
     public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints) {
-        return toChartPoints(locationPoints, 1, 1);
+        return toChartPoints(locationPoints, 1, 1, 0);
     }
 }

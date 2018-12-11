@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class StatisticsActivity extends Activity {
     ArrayList<LocationPoint> locationPoints;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,6 @@ public class StatisticsActivity extends Activity {
         ((TextView)findViewById(R.id.avgSpeed)).setText(avgSpeed + "");
         ((TextView)findViewById(R.id.totalDistance)).setText(totalDistance + "");
 
-        ((Chart)findViewById(R.id.chart)).setPoints(locationPoints);
+        ((Chart)findViewById(R.id.chart)).setPoints(locationPoints, maxAltitude, minAltitude);
     }
 }
