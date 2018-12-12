@@ -47,7 +47,6 @@ public class Chart extends View {
         ((Activity) getContext()).getWindowManager()
                 .getDefaultDisplay()
                 .getMetrics(displayMetrics);
-        windowHeight = displayMetrics.heightPixels;
         windowWidth = displayMetrics.widthPixels;
     }
 
