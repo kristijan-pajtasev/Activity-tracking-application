@@ -58,7 +58,9 @@ public class MainActivity extends Activity implements LocationListener {
         totalDistance = findViewById(R.id.totalDistance);
         totalTIme = findViewById(R.id.totalTime);
         startStopButton.setOnClickListener(startStopButtonHandler);
+    }
 
+    public void initialize() {
         totalDistance.setText(getTotalDistanceString(0));
         totalTIme.setText(getTotalTimeString(0));
     }
@@ -134,5 +136,12 @@ public class MainActivity extends Activity implements LocationListener {
     private String locationDisplay(Location location) {
         return "(lat: " + location.getLatitude() + ", long: " + location.getLongitude() +
                 ", alt: " + location.getAltitude() + ")";
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(ACTIVITY_TAG, "onResume triggered");
+        initialize();
     }
 }
