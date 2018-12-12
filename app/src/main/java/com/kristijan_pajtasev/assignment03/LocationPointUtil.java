@@ -1,5 +1,7 @@
 package com.kristijan_pajtasev.assignment03;
 
+import android.location.Location;
+
 import java.util.ArrayList;
 
 public class LocationPointUtil {
@@ -97,19 +99,19 @@ public class LocationPointUtil {
     }
 
     private static double distanceBetweenPoints(LocationPoint point1, LocationPoint point2) {
-        double x1 = point1.getAltitude() * Math.cos(point1.getLatitude()) * Math.sin(point1.getLongitude());
-        double y1 = point1.getAltitude() * Math.sin(point1.getLatitude());
-        double z1 = point1.getAltitude() * Math.cos(point1.getLatitude()) * Math.cos(point1.getLongitude());
+        Location pointA = new Location("A");
+        pointA.setAltitude(point1.getAltitude());
+        pointA.setLatitude(point1.getLatitude());
+        pointA.setLongitude(point1.getLongitude());
+        pointA.setTime(point1.getTime());
 
-        double x2 = point2.getAltitude() * Math.cos(point2.getLatitude()) * Math.sin(point2.getLongitude());
-        double y2 = point2.getAltitude() * Math.sin(point2.getLatitude());
-        double z2 = point2.getAltitude() * Math.cos(point2.getLatitude()) * Math.cos(point2.getLongitude());
+        Location pointB = new Location("B");
+        pointB.setAltitude(point2.getAltitude());
+        pointB.setLatitude(point2.getLatitude());
+        pointB.setLongitude(point2.getLongitude());
+        pointB.setTime(point2.getTime());
 
-        return Math.sqrt(
-                Math.pow(x2 - x1, 2) +
-                        Math.pow(y2 - y1, 2) +
-                        Math.pow(z2 - z1, 2)
-        );
+        return pointA.distanceTo(pointB);
     }
 
     public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints, float scalarX, float scalarY, float yCorrection) {
