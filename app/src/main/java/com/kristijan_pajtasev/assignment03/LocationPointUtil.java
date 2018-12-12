@@ -135,4 +135,11 @@ public class LocationPointUtil {
     public static float[] toChartPoints(ArrayList<LocationPoint> locationPoints, float windowHeight) {
         return toChartPoints(locationPoints, 1, 1, 0, windowHeight);
     }
+
+    public static long totalTime(ArrayList<LocationPoint> locationPoints) {
+        LocationPoint pointA = locationPoints.get(0);
+        LocationPoint pointB = locationPoints.get(locationPoints.size() - 1);
+
+        return (pointB.getTime() - pointA.getTime()) / 1000;
+    }
 }

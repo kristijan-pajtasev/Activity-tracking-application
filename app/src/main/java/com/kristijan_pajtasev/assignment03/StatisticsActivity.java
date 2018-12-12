@@ -25,6 +25,7 @@ public class StatisticsActivity extends Activity {
         double minSpeed = LocationPointUtil.minSpeed(locationPoints);
         double avgSpeed = LocationPointUtil.avgSpeed(locationPoints);
         double totalDistance = LocationPointUtil.totalDistance(locationPoints);
+        long totalTime = LocationPointUtil.totalTime(locationPoints);
 
         ((TextView)findViewById(R.id.minAltitude)).setText(distanceDisplay(minAltitude));
         ((TextView)findViewById(R.id.maxAltitude)).setText(distanceDisplay(maxAltitude));
@@ -34,6 +35,7 @@ public class StatisticsActivity extends Activity {
         ((TextView)findViewById(R.id.minSpeed)).setText(speedDisplay(minSpeed));
         ((TextView)findViewById(R.id.avgSpeed)).setText(speedDisplay(avgSpeed));
         ((TextView)findViewById(R.id.totalDistance)).setText(distanceDisplay(totalDistance));
+        ((TextView)findViewById(R.id.totalTime)).setText(timeDisplay(totalTime));
 
         ((Chart)findViewById(R.id.chart)).setPoints(locationPoints, maxAltitude, minAltitude);
     }
