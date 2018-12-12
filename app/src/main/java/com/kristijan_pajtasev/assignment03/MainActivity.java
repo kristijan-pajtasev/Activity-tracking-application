@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,16 +39,26 @@ public class MainActivity extends Activity implements LocationListener {
                 startActivity();
                 startStopButton.setBackgroundResource(R.drawable.round_stop_button);
             } else {
-                stopActivity();
                 startStopButton.setBackgroundResource(R.drawable.round_start_button);
-                GPXHandlerUtil.createFile(points, "myfile.gpx", context);
-                Intent intent = new Intent(context, StatisticsActivity.class);
-                startActivity(intent);
-
+                stopActivity();
+                if(points.size() < 2) {
+                    showNotEnoughPointsPopup();
+                } else {
+                    goToStats();
+                }
             }
-
         }
     };
+
+    public void showNotEnoughPointsPopup() {
+        Toast.makeText(context, R.string.not_enough_points, Toast.LENGTH_LONG).show();
+    }
+
+    public void goToStats() {
+        GPXHandlerUtil.createFile(points, "myfile.gpx", context);
+        Intent intent = new Intent(context, StatisticsActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

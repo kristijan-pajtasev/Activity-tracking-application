@@ -16,4 +16,5 @@
     <string name="altitude_loss">Altitude Loss:</string>
     <string name="altitude_gain">Altitude Gain:</string>
     <string name="total_time">Total Time:</string>
+    <string name="not_enough_points">Not enough points taken.</string>
 </resources>
