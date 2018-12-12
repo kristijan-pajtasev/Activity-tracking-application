@@ -22,7 +22,6 @@ public class MainActivity extends Activity implements LocationListener {
     public static final String ACTIVITY_TAG = "MAIN_ACTIVITY";
     private boolean isStarted = false;
     private Button startStopButton;
-    private TextView currentLocation;
     private ArrayList<LocationPoint> points;
     private Context context;
 
@@ -33,9 +32,9 @@ public class MainActivity extends Activity implements LocationListener {
             if (isStarted) {
                 points = new ArrayList<>();
                 startActivity();
-                startStopButton.setText(R.string.stop);
+                startStopButton.setBackgroundResource(R.drawable.round_stop_button);
             } else {
-                startStopButton.setText(R.string.start);
+                startStopButton.setBackgroundResource(R.drawable.round_start_button);
                 GPXHandlerUtil.createFile(points, "myfile.gpx", context);
                 Intent intent = new Intent(context, StatisticsActivity.class);
                 startActivity(intent);
