@@ -24,12 +24,15 @@ public class MainActivity extends Activity implements LocationListener {
     private Button startStopButton;
     private ArrayList<LocationPoint> points;
     private Context context;
+    private TextView totalDistance, totalTIme;
+    private long time;
 
     private OnClickListener startStopButtonHandler = new OnClickListener() {
         @Override
         public void onClick(View v) {
             isStarted = !isStarted;
             if (isStarted) {
+                time = System.currentTimeMillis();
                 points = new ArrayList<>();
                 startActivity();
                 startStopButton.setBackgroundResource(R.drawable.round_stop_button);
@@ -50,7 +53,12 @@ public class MainActivity extends Activity implements LocationListener {
         setContentView(R.layout.activity_main);
         context = this;
         startStopButton = findViewById(R.id.startStopButton);
+        totalDistance = findViewById(R.id.totalDistance);
+        totalTIme = findViewById(R.id.totalTime);
         startStopButton.setOnClickListener(startStopButtonHandler);
+
+        totalDistance.setText(getTotalDistanceString(0));
+        totalTIme.setText(getTotalTimeString(0));
     }
 
     private void startActivity() {
@@ -84,6 +92,22 @@ public class MainActivity extends Activity implements LocationListener {
                 location.getLatitude(),
                 location.getLongitude(),
                 location.getTime()));
+
+        Double totalDistance = LocationPointUtil.totalDistance(points);
+        String totalDistanceString = getTotalDistanceString(totalDistance);
+        this.totalDistance.setText(totalDistanceString);
+
+        String totalTimeString = getTotalTimeString((System.currentTimeMillis() - time) / 1000);
+        this.totalTIme.setText(totalTimeString);
+
+    }
+
+    private String getTotalTimeString(long time) {
+        return String.format("Total Time: %ds", time);
+    }
+
+    private String getTotalDistanceString(double distanace) {
+        return String.format("Total Distance: %.2fm", distanace);
     }
 
     @Override

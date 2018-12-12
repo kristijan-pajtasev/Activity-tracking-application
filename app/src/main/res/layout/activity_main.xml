@@ -11,4 +11,30 @@
         android:layout_centerInParent="true"
         android:background="@drawable/round_start_button" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/totalDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/total_distance"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/totalTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/time"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
