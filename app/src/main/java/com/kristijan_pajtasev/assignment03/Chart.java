@@ -58,7 +58,7 @@ public class Chart extends View {
         super.onDraw(canvas);
         if(null != points) {
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            paint.setColor(0xFFFF0000);
+            paint.setColor(0xFF00B0FF);
             paint.setStrokeWidth(2);
             canvas.drawLines(points, paint);
         }
