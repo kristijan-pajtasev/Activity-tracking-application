@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/currentLocation"
+    <com.kristijan_pajtasev.assignment03.Chart
+        android:id="@+id/chart"
+        android:layout_height="400px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/current_location"/>
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -145,11 +145,5 @@
             android:layout_weight="1"
             android:text="@string/total_distance"/>
     </LinearLayout>
-
-    <com.kristijan_pajtasev.assignment03.Chart
-        android:id="@+id/chart"
-        android:layout_height="400px"
-        android:layout_width="match_parent"
-        />
 
 </LinearLayout>

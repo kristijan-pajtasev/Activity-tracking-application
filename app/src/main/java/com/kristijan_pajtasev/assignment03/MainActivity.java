@@ -51,7 +51,6 @@ public class MainActivity extends Activity implements LocationListener {
         setContentView(R.layout.activity_main);
         context = this;
         startStopButton = findViewById(R.id.startStopButton);
-        currentLocation = findViewById(R.id.currentLocation);
         startStopButton.setOnClickListener(startStopButtonHandler);
     }
 
