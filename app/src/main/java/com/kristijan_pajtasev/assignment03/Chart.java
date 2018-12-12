@@ -11,36 +11,34 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Chart extends View {
     float[] points;
-    private int windowHeight;
     private int windowWidth;
 
     public Chart(Context context) {
         super(context);
-        initialize(context);
+        initialize();
     }
 
     public Chart(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initialize(context);
+        initialize();
     }
 
     public Chart(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initialize(context);
+        initialize();
     }
 
-    private void initialize(Context context) {
+    private void initialize() {
         setWindowDimensions();
         this.setBackgroundColor(Color.BLACK);
     }
 
     public void setPoints(ArrayList<LocationPoint> points, double maxAltitude, double minAltitude) {
         float scalarY = (float)((this.getLayoutParams().height - 20) / (maxAltitude - minAltitude));
-        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), scalarY, (float)minAltitude);
+        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), scalarY, (float)minAltitude, this.getLayoutParams().height);
         invalidate();
     }
 
