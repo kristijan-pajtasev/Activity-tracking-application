@@ -26,6 +26,7 @@ public class MainActivity extends Activity implements LocationListener {
     private Context context;
     private TextView totalDistance, totalTIme;
     private long time;
+    private LocationManager locationManager;
 
     private OnClickListener startStopButtonHandler = new OnClickListener() {
         @Override
@@ -37,6 +38,7 @@ public class MainActivity extends Activity implements LocationListener {
                 startActivity();
                 startStopButton.setBackgroundResource(R.drawable.round_stop_button);
             } else {
+                stopActivity();
                 startStopButton.setBackgroundResource(R.drawable.round_start_button);
                 GPXHandlerUtil.createFile(points, "myfile.gpx", context);
                 Intent intent = new Intent(context, StatisticsActivity.class);
@@ -63,7 +65,7 @@ public class MainActivity extends Activity implements LocationListener {
 
     private void startActivity() {
         Log.w(ACTIVITY_TAG, "Activity started");
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -82,6 +84,10 @@ public class MainActivity extends Activity implements LocationListener {
             Log.w(ACTIVITY_TAG, "GPS permissions granted");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
         }
+    }
+
+    public void stopActivity() {
+        locationManager.removeUpdates(this);
     }
 
     @Override
