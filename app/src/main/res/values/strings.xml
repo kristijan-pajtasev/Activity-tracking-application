@@ -17,4 +17,6 @@
     <string name="altitude_gain">Altitude Gain:</string>
     <string name="total_time">Total Time:</string>
     <string name="not_enough_points">Not enough points taken.</string>
+    <string name="distance">Distance</string>
+    <string name="time">Time</string>
 </resources>
