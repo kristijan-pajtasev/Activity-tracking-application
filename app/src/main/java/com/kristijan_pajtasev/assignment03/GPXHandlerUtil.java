@@ -90,7 +90,6 @@ public class GPXHandlerUtil {
             NodeList nodelist_trkpt = elementRoot.getElementsByTagName("trkpt");
 
             for(int i = 0; i < nodelist_trkpt.getLength(); i++){
-
                 Node node = nodelist_trkpt.item(i);
                 NamedNodeMap attributes = node.getAttributes();
 
@@ -106,7 +105,6 @@ public class GPXHandlerUtil {
                 Date date = formatter.parse(time);
 
                 list.add(new LocationPoint(alt, newLatitude_double, newLongitude_double, date.getTime()));
-
             }
             fileInputStream.close();
         } catch (ParserConfigurationException e) {
@@ -120,7 +118,6 @@ public class GPXHandlerUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return list;
     }
 
