@@ -122,11 +122,15 @@ public class MainActivity extends Activity implements LocationListener {
     }
 
     private String getTotalTimeString(long time) {
-        return String.format("Total Time: %ds", time);
+        long minutes = time / 60;
+        long seconds = time % 60;
+        if(seconds < 10)
+            return String.format("%d:0%d", minutes, seconds);
+        return String.format("%d:%d", minutes, seconds);
     }
 
     private String getTotalDistanceString(double distanace) {
-        return String.format("Total Distance: %.2fm", distanace);
+        return String.format("%.2fm", distanace);
     }
 
     @Override
