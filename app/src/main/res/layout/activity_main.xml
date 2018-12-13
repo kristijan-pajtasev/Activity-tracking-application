@@ -14,23 +14,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/totalDistance"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:layout_weight="1"
             android:text="@string/total_distance"
             android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/totalTime"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textAlignment="center"
             android:text="@string/time"
             android:textColor="@color/white"/>
