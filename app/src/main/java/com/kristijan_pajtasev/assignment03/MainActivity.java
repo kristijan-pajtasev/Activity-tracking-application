@@ -88,15 +88,8 @@ public class MainActivity extends Activity implements LocationListener {
             } else if (shouldAskStoragePermission) {
                 activityRequiresPermissionsToast();
             } else {
-                // ask for permissions
+                askForPermissions();
             }
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             Log.w(ACTIVITY_TAG, "GPS permissions missing");
         } else {
             Log.w(ACTIVITY_TAG, "GPS permissions granted");
@@ -106,6 +99,16 @@ public class MainActivity extends Activity implements LocationListener {
 
     public void stopActivity() {
         locationManager.removeUpdates(this);
+    }
+
+
+
+    public void askForPermissions() {
+        String[] permissions = {
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        ActivityCompat.requestPermissions(this, permissions, 0);
     }
 
     public void activityRequiresPermissionsToast() {
