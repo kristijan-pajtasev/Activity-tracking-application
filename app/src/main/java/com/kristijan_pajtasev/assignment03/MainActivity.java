@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity implements LocationListener {
     public static final String ACTIVITY_TAG = "MAIN_ACTIVITY";
+    public static final int REQUEST_CODE = 0;
     private boolean isStarted = false;
     private Button startStopButton;
     private ArrayList<LocationPoint> points;
@@ -101,14 +102,29 @@ public class MainActivity extends Activity implements LocationListener {
         locationManager.removeUpdates(this);
     }
 
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                        && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                } else {
+                }
+                return;
+            }
 
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
 
     public void askForPermissions() {
         String[] permissions = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         };
-        ActivityCompat.requestPermissions(this, permissions, 0);
+        ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
     }
 
     public void activityRequiresPermissionsToast() {
