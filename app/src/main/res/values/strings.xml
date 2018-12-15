@@ -18,4 +18,5 @@
     <string name="total_time">Total Time:</string>
     <string name="not_enough_points">Not enough points taken.</string>
     <string name="distance">Distance</string>
+    <string name="application_requires_permissions">This application requires location and storage permission to be enabled</string>
 </resources>

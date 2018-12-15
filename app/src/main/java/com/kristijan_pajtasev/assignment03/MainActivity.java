@@ -81,9 +81,14 @@ public class MainActivity extends Activity implements LocationListener {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            }
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            boolean shouldAskLocationPermission = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION);
+            boolean shouldAskStoragePermission = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+            if (shouldAskLocationPermission) {
+                activityRequiresPermissionsToast();
+            } else if (shouldAskStoragePermission) {
+                activityRequiresPermissionsToast();
+            } else {
+                // ask for permissions
             }
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -101,6 +106,11 @@ public class MainActivity extends Activity implements LocationListener {
 
     public void stopActivity() {
         locationManager.removeUpdates(this);
+    }
+
+    public void activityRequiresPermissionsToast() {
+        Toast.makeText(context, R.string.application_requires_permissions, Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
