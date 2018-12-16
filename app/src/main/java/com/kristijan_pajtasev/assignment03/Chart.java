@@ -38,7 +38,7 @@ public class Chart extends View {
 
     public void setPoints(ArrayList<LocationPoint> points, double maxAltitude, double minAltitude) {
         float scalarY = (float)((this.getLayoutParams().height - 20) / (maxAltitude - minAltitude));
-        this.points = LocationPointUtil.toChartPoints(points, windowWidth / (points.size() - 1), scalarY, (float)minAltitude, this.getLayoutParams().height);
+        this.points = LocationPointUtil.toChartPoints(points, (windowWidth - 20) / (points.size() - 1), scalarY, (float)minAltitude, this.getLayoutParams().height);
         invalidate();
     }
 
