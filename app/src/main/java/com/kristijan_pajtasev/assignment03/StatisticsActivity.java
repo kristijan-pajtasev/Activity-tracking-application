@@ -7,9 +7,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Statistics screen activity
+ */
 public class StatisticsActivity extends Activity {
     ArrayList<LocationPoint> locationPoints;
 
+    /**
+     * Gets all statistic values and shows them in appropriate text views
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +47,29 @@ public class StatisticsActivity extends Activity {
         ((Chart)findViewById(R.id.chart)).setPoints(locationPoints, maxAltitude, minAltitude);
     }
 
+    /**
+     * Creates display String for distance
+     * @param distance
+     * @return formatted distance string
+     */
     private String distanceDisplay(double distance) {
         return String.format("%.2fm", distance);
     }
 
+    /**
+     * Creates display String for distance
+     * @param time
+     * @return formatted time string
+     */
     private String timeDisplay(long time) {
         return String.format("%ds", time);
     }
 
+    /**
+     * Creates display String for speed
+     * @param speed
+     * @return formatted speed string
+     */
     private String speedDisplay(double speed) {
         return String.format("%.2fm/s", speed);
     }
