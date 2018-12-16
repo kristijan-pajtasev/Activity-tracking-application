@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * MainActivity is Activity class of main, first screen of application. Implements LocationListener
+ * to be able to use position change listener
+ */
 public class MainActivity extends Activity implements LocationListener {
     public static final String ACTIVITY_TAG = "MAIN_ACTIVITY";
     public static final int REQUEST_CODE = 0;
@@ -38,7 +42,6 @@ public class MainActivity extends Activity implements LocationListener {
                 time = System.currentTimeMillis();
                 points = new ArrayList<>();
                 startActivity();
-                startStopButton.setBackgroundResource(R.drawable.round_stop_button);
             } else {
                 startStopButton.setBackgroundResource(R.drawable.round_start_button);
                 stopActivity();
@@ -79,6 +82,7 @@ public class MainActivity extends Activity implements LocationListener {
 
     private void startActivity() {
         Log.w(ACTIVITY_TAG, "Activity started");
+        startStopButton.setBackgroundResource(R.drawable.round_stop_button);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             boolean shouldAskLocationPermission = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION);
