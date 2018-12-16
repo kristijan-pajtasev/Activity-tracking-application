@@ -79,7 +79,6 @@ public class MainActivity extends Activity implements LocationListener {
 
     private void startActivity() {
         Log.w(ACTIVITY_TAG, "Activity started");
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             boolean shouldAskLocationPermission = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION);
@@ -94,6 +93,7 @@ public class MainActivity extends Activity implements LocationListener {
             Log.w(ACTIVITY_TAG, "GPS permissions missing");
         } else {
             Log.w(ACTIVITY_TAG, "GPS permissions granted");
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, this);
         }
     }
@@ -109,13 +109,12 @@ public class MainActivity extends Activity implements LocationListener {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    startActivity();
                 } else {
+                    activityRequiresPermissionsToast();
                 }
                 return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 
