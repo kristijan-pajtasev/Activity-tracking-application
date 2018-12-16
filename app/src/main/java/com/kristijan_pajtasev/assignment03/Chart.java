@@ -12,6 +12,9 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+/**
+ * Custom view class that creates altitude graph
+ */
 public class Chart extends View {
     float[] points;
     private int windowWidth;
@@ -31,17 +34,30 @@ public class Chart extends View {
         initialize();
     }
 
+
+    /**
+     * Get window dimensions
+     */
     private void initialize() {
         setWindowDimensions();
         this.setBackgroundColor(Color.BLACK);
     }
 
+    /**
+     * Converts LocationPoints into array of chart points
+     * @param points to be converted
+     * @param maxAltitude maximum altitude during measuring
+     * @param minAltitude minimum altitude during measuring
+     */
     public void setPoints(ArrayList<LocationPoint> points, double maxAltitude, double minAltitude) {
         float scalarY = (float)((this.getLayoutParams().height - 20) / (maxAltitude - minAltitude));
         this.points = LocationPointUtil.toChartPoints(points, (windowWidth - 20) / (points.size() - 1), scalarY, (float)minAltitude, this.getLayoutParams().height);
         invalidate();
     }
 
+    /**
+     * Reads window dimensions
+     */
     private void setWindowDimensions() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager()
@@ -50,6 +66,10 @@ public class Chart extends View {
         windowWidth = displayMetrics.widthPixels;
     }
 
+    /**
+     * Draws line of altitude change graph
+     * @param canvas
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
