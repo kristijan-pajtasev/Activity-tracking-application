@@ -176,11 +176,14 @@ public class LocationPointUtil {
         ArrayList<Float> pointsList = new ArrayList<>();
         for(int i = 0; i < locationPoints.size(); i++) {
             LocationPoint point = locationPoints.get(i);
-            pointsList.add(i * scalarX + 10);
-            pointsList.add(windowHeight - (float)(point.getAltitude() - yCorrection) * scalarY - 10);
+            float x = i * scalarX + 10;
+            float y = windowHeight - (float)(point.getAltitude() - yCorrection) * scalarY - 10;
+            pointsList.add(x);
+            pointsList.add(y);
+            if(y == 0) y = windowHeight - 10;
             if(i>0 && i < locationPoints.size() - 1) {
-                pointsList.add(i * scalarX + 10);
-                pointsList.add(windowHeight - (float)(point.getAltitude() - yCorrection) * scalarY - 10);
+                pointsList.add(x);
+                pointsList.add(y);
             }
         }
         float[] points = new float[pointsList.size()];
