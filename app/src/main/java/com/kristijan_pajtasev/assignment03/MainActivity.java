@@ -54,16 +54,26 @@ public class MainActivity extends Activity implements LocationListener {
         }
     };
 
+    /**
+     * Shows toast message if not enough GPS points are takes
+     */
     public void showNotEnoughPointsPopup() {
         Toast.makeText(context, R.string.not_enough_points, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Starts new intent to display all statistics from last activity
+     */
     public void goToStats() {
         GPXHandlerUtil.createFile(points, "myfile.gpx", context);
         Intent intent = new Intent(context, StatisticsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Override of on create method, gets all elements and registers button listener.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +85,18 @@ public class MainActivity extends Activity implements LocationListener {
         startStopButton.setOnClickListener(startStopButtonHandler);
     }
 
+    /**
+     * Sets initial status values of distance and time
+     */
     public void initialize() {
         totalDistance.setText(getTotalDistanceString(0));
         totalTIme.setText(getTotalTimeString(0));
     }
 
+    /**
+     * Checks if location and storage permissions are added. If not asks for them, otherwise shows
+     * toast message requesting for enabling them.
+     */
     private void startActivity() {
         Log.w(ACTIVITY_TAG, "Activity started");
         startStopButton.setBackgroundResource(R.drawable.round_stop_button);
@@ -102,10 +119,20 @@ public class MainActivity extends Activity implements LocationListener {
         }
     }
 
+    /**
+     * Removes location change listener
+     */
     public void stopActivity() {
         locationManager.removeUpdates(this);
     }
 
+    /**
+     * Checks if permissions are granted if changed. If yes starts activity, otherwise shows toast
+     * message
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -122,6 +149,9 @@ public class MainActivity extends Activity implements LocationListener {
         }
     }
 
+    /**
+     * Shows prompt asking for permissions
+     */
     public void askForPermissions() {
         String[] permissions = {
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -130,11 +160,19 @@ public class MainActivity extends Activity implements LocationListener {
         ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
     }
 
+    /**
+     * Shows toast message if permissions are already denied
+     */
     public void activityRequiresPermissionsToast() {
         Toast.makeText(context, R.string.application_requires_permissions, Toast.LENGTH_LONG).show();
         finish();
     }
 
+    /**
+     * On location change listener. When received, converts points to LocationPoint object and adds
+     * it to list. Updates status values
+     * @param location
+     */
     @Override
     public void onLocationChanged(Location location) {
         Log.i(ACTIVITY_TAG, "onLocationChanged: " + locationDisplay(location));
@@ -153,6 +191,11 @@ public class MainActivity extends Activity implements LocationListener {
 
     }
 
+    /**
+     * Gets String format for time
+     * @param time
+     * @return String formatted value
+     */
     private String getTotalTimeString(long time) {
         long minutes = time / 60;
         long seconds = time % 60;
@@ -161,30 +204,58 @@ public class MainActivity extends Activity implements LocationListener {
         return String.format("%d:%d", minutes, seconds);
     }
 
+
+    /**
+     * Gets String format for distance passed
+     * @param distanace
+     * @return String formatted distance
+     */
     private String getTotalDistanceString(double distanace) {
         return String.format("%.2fm", distanace);
     }
 
+    /**
+     * Inherited unused method
+     * @param provider
+     * @param status
+     * @param extras
+     */
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
     }
 
+    /**
+     * Inherited unused method
+     * @param provider
+     */
     @Override
     public void onProviderEnabled(String provider) {
 
     }
 
+    /**
+     * Inherited unused method
+     * @param provider
+     */
     @Override
     public void onProviderDisabled(String provider) {
 
     }
 
+    /**
+     * Converts location point to formatted string
+     * @param location
+     * @return String formatted location
+     */
     private String locationDisplay(Location location) {
         return "(lat: " + location.getLatitude() + ", long: " + location.getLongitude() +
                 ", alt: " + location.getAltitude() + ")";
     }
 
+    /**
+     * Re-initializes activity
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -192,6 +263,9 @@ public class MainActivity extends Activity implements LocationListener {
         initialize();
     }
 
+    /**
+     * Stops location change updates listener
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
