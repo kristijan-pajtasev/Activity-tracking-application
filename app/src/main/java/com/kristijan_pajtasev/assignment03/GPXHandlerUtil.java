@@ -32,8 +32,17 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+/**
+ * Utility class for handling GPX files
+ */
 public class GPXHandlerUtil {
 
+    /**
+     * Creates GPX file with given file name for given points
+     * @param points for populating GPX file
+     * @param fileName used for saving fie
+     * @param context
+     */
     static public void createFile(ArrayList<LocationPoint> points, String fileName, Context context) {
         FileOutputStream outputStream;
         StringBuilder buffer = new StringBuilder();
@@ -75,6 +84,12 @@ public class GPXHandlerUtil {
         }
     }
 
+    /**
+     * Reads GPX file and converts it into ArrayList<LocationPoint>
+     * @param context
+     * @param fileName which to convert to list
+     * @return ArrayList<LocationPoint> parsed from file
+     */
     public static ArrayList<LocationPoint> decodeGPX(Context context, String fileName){
         File file = new File(context.getFilesDir(), fileName);
 
