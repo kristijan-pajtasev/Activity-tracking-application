@@ -187,4 +187,11 @@ public class MainActivity extends Activity implements LocationListener {
         Log.i(ACTIVITY_TAG, "onResume triggered");
         initialize();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(ACTIVITY_TAG, "onDestroy stop gps updates");
+        locationManager.removeUpdates(this);
+    }
 }
